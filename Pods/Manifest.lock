@@ -1,0 +1,44 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - CHTCollectionViewWaterfallLayout (0.9.7):
+    - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.7)
+  - CHTCollectionViewWaterfallLayout/ObjC (0.9.7)
+  - ISO8601 (0.6.0)
+  - JSONModel (1.7.0)
+  - SwaggerClient (1.0.0):
+    - AFNetworking (~> 3)
+    - ISO8601 (~> 0.6)
+    - JSONModel (~> 1.2)
+
+DEPENDENCIES:
+  - CHTCollectionViewWaterfallLayout
+  - SwaggerClient (from `Vendor/SwaggerClient`)
+
+EXTERNAL SOURCES:
+  SwaggerClient:
+    :path: Vendor/SwaggerClient
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  CHTCollectionViewWaterfallLayout: 9d11068fafecac106695bb5a5d6d0f738483b598
+  ISO8601: d3ea3ba9b752820cf92c6b47a9ee327e9f0e13fc
+  JSONModel: 840bc0fcffb24b8454d2c026bf26fea454b8e98d
+  SwaggerClient: 9595ed543fd8a83b616274b562f6bc9d950d1124
+
+PODFILE CHECKSUM: 3bda58c8408a9f746562c6797082fd01b772cabe
+
+COCOAPODS: 1.1.1
