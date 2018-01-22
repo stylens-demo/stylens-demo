@@ -118,10 +118,12 @@
 -(void)getImagesWithObjectId:(NSString*)anObjectId {
     SWGImageApi *apiInstance = [[SWGImageApi alloc] init];
     [apiInstance getImagesByObjectIdWithObjectId:anObjectId offset:[NSNumber numberWithInt:0] limit:[NSNumber numberWithInt:10] completionHandler: ^(SWGGetImagesResponse* output, NSError* error) {
-        [self.editorProductResultInfos removeAllObjects];
+        
         [self.app.baseViewController stopIndicator];
         
         if (output) {
+            [self.editorProductResultInfos removeAllObjects];
+            
             NSLog(@"%@", output);
             NSLog(@"");
             
@@ -202,10 +204,23 @@
     [self.app.baseViewController.aloNavi popViewCointroller:YES];
 }
 
--(void)objectButtonClickedWithKey:(int)aKey {
+//-(void)objectButtonClickedWithKey:(int)aKey {
+//    BoxInfo* aBoxInfo;
+//    for (NSNumber *key in self.boxInfos) {
+//        if ([key integerValue] != aKey) {
+//            continue;
+//        }
+//        aBoxInfo = [self.boxInfos objectForKey:key];
+//        NSLog(@"Value: %@ for key: %@", aBoxInfo._id, key);
+//        [self getImagesWithObjectId:aBoxInfo._id];
+//    }
+//}
+
+-(void)objectButtonClickedWithButton:(UIButton*)aButton {
+    self.currentButton = aButton;
     BoxInfo* aBoxInfo;
     for (NSNumber *key in self.boxInfos) {
-        if ([key integerValue] != aKey) {
+        if ([key integerValue] != aButton.tag) {
             continue;
         }
         aBoxInfo = [self.boxInfos objectForKey:key];
@@ -215,7 +230,6 @@
 }
 
 -(void)pushToProductDetail:(ProductInfo*)aProductInfo boxInfos:(NSMutableDictionary*)aBoxInfos productInfos:(NSMutableArray<ProductInfo*>*)aProductInfos {
-    
     ProductDetailViewController *aNewViewPush = [[ProductDetailViewController alloc] initWithSize:self.app.screenRect.size];
     aNewViewPush.bShowToolbar = NO;
     aNewViewPush.productInfos = aProductInfos;

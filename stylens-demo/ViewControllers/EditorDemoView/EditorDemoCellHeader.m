@@ -95,11 +95,11 @@ UIButton *currentButton;
             [self setUpTKImageView:_productMainImage];
         }
         
-        NSLog(@"%@", self.currentButton);
+        NSLog(@"%@", self.editorView.currentButton);
         
-        if (self.currentButton) {
+        if (self.editorView.currentButton) {
             self.productMainImageView.hidden = YES;
-            [self resetObjectButtonViews:self.currentButton];
+            [self resetObjectButtonViews:self.editorView.currentButton];
         }
     }
     
@@ -147,7 +147,7 @@ UIButton *currentButton;
     for (UIButton *aButton in self.objectDetectionButtons) {
         if (aButton.tag == anObjectButton.tag) {
             aButton.hidden = YES;
-            self.currentButton = anObjectButton;
+            self.editorView.currentButton = anObjectButton;
             [self setObjectBoxRectWithBoxInfo: [self.editorView.boxInfos objectForKey:[NSNumber numberWithLong:anObjectButton.tag]]];
         } else {
             aButton.hidden = NO;
@@ -160,14 +160,14 @@ UIButton *currentButton;
     [self.app.baseViewController startIndicator];
     
     [self resetObjectButtonViews:anObjectButton];
-    [self.editorView objectButtonClickedWithKey:(int)anObjectButton.tag];
+    [self.editorView objectButtonClickedWithButton:anObjectButton];
     
-//    for (id child in [self subviews]) {
-//        if ([child isMemberOfClass:[UIButton class]]) {
-//            [child removeFromSuperview];
-//        }
-//    }
-//    self.objectDetectionButtons = nil;
+    for (id child in [self subviews]) {
+        if ([child isMemberOfClass:[UIButton class]]) {
+            [child removeFromSuperview];
+        }
+    }
+    self.objectDetectionButtons = nil;
     self.tkImageView.hidden = NO;
 }
 

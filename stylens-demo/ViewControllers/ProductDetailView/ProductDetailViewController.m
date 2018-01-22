@@ -101,6 +101,49 @@ NSMutableArray<ProductInfo*>* productInfos;
                         }];
 }
 
+-(void)processGetImagesApiWithImageId:(NSString*)imageId image:(UIImage*)anImage {
+    SWGImageApi *apiInstance = [[SWGImageApi alloc] init];
+    [apiInstance getImageByIdWithImageId:imageId completionHandler:^(SWGGetImageResponse* output, NSError* error) {
+        if (output) {
+            NSLog(@"%@", output);
+            NSLog(@"");
+            
+            EditorDemoViewController *aNewViewPush = [[EditorDemoViewController alloc] initWithSize:self.app.screenRect.size];
+            aNewViewPush.bShowToolbar = NO;
+            aNewViewPush.productImage = anImage;
+            aNewViewPush.boxInfos = self.boxInfos;
+            aNewViewPush.editorProductResultInfos = [self generateEditorResultInfos:output.data.images];
+            
+            [self.app.baseViewController stopIndicator];
+            [self.app.baseViewController.aloNavi pushViewController:aNewViewPush animated:YES];
+        }
+        if (error) {
+            NSLog(@"Error: %@", error);
+        }
+    }];
+}
+-(NSMutableArray*)generateEditorResultInfos:(NSArray<SWGSimImage*>*)anEditorResultInfos {
+    NSMutableArray<ProductInfo*>* aProductInfos = [[NSMutableArray alloc] init];
+    ProductInfo *aProductInfo = nil;
+    for(SWGSimImage *aSWGImage in anEditorResultInfos) {
+        aProductInfo = [[ProductInfo alloc] init];
+        aProductInfo._id = aSWGImage._id;
+        aProductInfo.mainImageName = aSWGImage.mainImageMobileFull;
+        aProductInfo.mobileThumbImageName = aSWGImage.mainImageMobileThumb;
+        aProductInfo.titleLabel = aSWGImage.productName;
+        aProductInfo.priceLabel = [NSString stringWithFormat:@"%@ %@",
+                                   [Global getStringNumberFormat:aSWGImage.price],
+                                   [Global getCurrencyUnit:aSWGImage.currencyUnit]];
+        aProductInfo.productUrl = aSWGImage.productUrl;
+        
+        UIImage *anImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:aSWGImage.mainImageMobileThumb]]];
+        aProductInfo.imageSize = [NSValue valueWithCGSize:CGSizeMake(anImage.size.width, anImage.size.height)];
+        
+        [aProductInfos addObject:aProductInfo];
+    }
+    return aProductInfos;
+}
+
 #pragma mark - Accessors
 -(void)setProductInfo:(ProductInfo *)aProductInfo {
     _productInfo = aProductInfo;
@@ -256,17 +299,7 @@ NSMutableArray<ProductInfo*>* productInfos;
     [AloImage imageWithUrl:imageUrl WithCompletionBlock:^(BOOL bSuccess, NSError *error, UIImage *anImage) {
         if (bSuccess) {
             [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                EditorDemoViewController *aNewViewPush = [[EditorDemoViewController alloc] initWithSize:self.app.screenRect.size];
-                aNewViewPush.bShowToolbar = NO;
-                aNewViewPush.productImage = anImage;
-                aNewViewPush.boxInfos = self.boxInfos;
-                aNewViewPush.editorProductResultInfos = self.productInfos;
-                
-                NSLog(@"%@", self.boxInfos);
-                NSLog(@"");
-                
-                [self.app.baseViewController stopIndicator];
-                [self.app.baseViewController.aloNavi pushViewController:aNewViewPush animated:YES];
+                [self processGetImagesApiWithImageId:self.productInfo._id image:(UIImage*)anImage];
             }];
         }
     }];

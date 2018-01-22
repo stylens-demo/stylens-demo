@@ -27,9 +27,11 @@
 //@property (nonatomic, assign, setter=setBoxRect:) CGRect boxRect;
 @property (nonatomic, strong, setter=setEditorProductResultInfos:) NSMutableArray<ProductInfo*> *editorProductResultInfos;
 
+@property (nonatomic, strong) UIButton *currentButton;
+
 @property (nonatomic, strong) UIButton *backButton;
 @property (nonatomic, strong) UICollectionView *collectionView;
 
--(void)objectButtonClickedWithKey:(int)key;
+-(void)objectButtonClickedWithButton:(UIButton*)button;
 
 @end
