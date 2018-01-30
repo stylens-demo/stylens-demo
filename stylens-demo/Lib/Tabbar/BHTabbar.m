@@ -86,6 +86,8 @@
 }
 
 -(void)galleryTabClicked:(id)sender {
+    [self.app.baseViewController startIndicator];
+    
     [self.app.baseViewController showGalleryView];
     [self updateMenus];
 }

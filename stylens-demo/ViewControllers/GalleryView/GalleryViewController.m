@@ -14,6 +14,7 @@
 
 #import "Global.h"
 #import <SwaggerClient/SWGObjectApi.h>
+#import "TKImageView.h"
 #import "BoxInfo.h"
 
 #import "EditorDemoViewController.h"
@@ -23,6 +24,9 @@
 @end
 
 @implementation GalleryViewController
+
+UIImagePickerController *imagePickerController;
+TKImageView *tkImageView;
 
 NSMutableArray<ProductInfo*>* galleryResultInfos;
 NSMutableDictionary *galleryBoxObjectsDic;
@@ -46,15 +50,14 @@ NSMutableDictionary *galleryBoxObjectsDic;
     self.view = aView;
     self.view.backgroundColor = [UIColor whiteColor];
     
-//    UIImageView *anImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 50, self.app.screenRect.size.width, self.app.screenRect.size.height/2)];
-//    anImageView.backgroundColor = [UIColor darkGrayColor];
-//    [self.view addSubview:anImageView];
-//    self.previewImageView = anImageView;
+    UIImagePickerController *anImagePickerController = [[UIImagePickerController alloc] init];
+    anImagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    anImagePickerController.delegate = self;
+    imagePickerController = anImagePickerController;
     
-    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-    imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    imagePickerController.delegate = self;
-    self.imagePickerController = imagePickerController;
+    tkImageView = [[TKImageView alloc] initWithFrame:CGRectZero];
+    tkImageView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:tkImageView];
     
     galleryResultInfos = [[NSMutableArray alloc] init];
 }
@@ -87,6 +90,21 @@ NSMutableDictionary *galleryBoxObjectsDic;
                                      if (error) {
                                          [self.app.baseViewController stopIndicator];
                                          NSLog(@"Error: %@", error);
+                                         
+                                         UIAlertController * alert=   [UIAlertController
+                                                                       alertControllerWithTitle:@"No Result."
+                                                                       message:@""
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+                                         UIAlertAction* ok = [UIAlertAction
+                                                              actionWithTitle:@"OK"
+                                                              style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {
+                                                                  [self.app.baseViewController startIndicator];
+                                                                  [alert dismissViewControllerAnimated:YES completion:nil];
+                                                                  [self showGallery];
+                                                              }];
+                                         [alert addAction:ok];
+                                         [self.app.baseViewController.naviBaseViewController presentViewController:alert animated:YES completion:nil];
                                      }
                                  }];
 }
@@ -136,7 +154,9 @@ NSMutableDictionary *galleryBoxObjectsDic;
 
 #pragma mark - Methods
 -(void)showGallery {
-    [self.app.baseViewController.naviBaseViewController presentViewController:self.imagePickerController animated:YES completion:nil];
+    [self.app.baseViewController.naviBaseViewController presentViewController:imagePickerController animated:YES completion:^{
+        [self.app.baseViewController stopIndicator];
+    }];
 }
 
 // demo
