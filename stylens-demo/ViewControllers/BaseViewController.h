@@ -22,6 +22,7 @@
 
 @class HomeViewController;
 @class CameraViewController;
+@class GalleryViewController;
 
 @interface BaseViewController : AloViewController
 
@@ -33,9 +34,11 @@
 @property (nonatomic, weak) UIViewController* curViewController;
 @property (nonatomic, strong) HomeViewController* homeViewController;
 @property (nonatomic, strong) CameraViewController* cameraViewController;
+@property (nonatomic, strong) GalleryViewController* galleryViewController;
 
 -(void)showHomeView;
 -(void)showCameraView;
+-(void)showGalleryView;
 
 -(void)startIndicator;
 -(void)stopIndicator;

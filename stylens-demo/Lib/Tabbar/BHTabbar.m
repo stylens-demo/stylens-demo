@@ -52,7 +52,7 @@
         aButton = [UIButton buttonWithType:UIButtonTypeCustom];
         aButton.frame = CGRectMake(curX, curY, aButtonSize.width, aButtonSize.height);
         [aButton setImage:[UIImage imageNamed:@"btnGalleryNor"] forState:UIControlStateNormal];
-//        [aButton addTarget:self action:@selector(communityTabClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [aButton addTarget:self action:@selector(galleryTabClicked:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:aButton];
         self.galleryButton = aButton;
         
@@ -70,9 +70,9 @@
        [self.homeButton setImage:[UIImage imageNamed:@"btnHomeSel"] forState:UIControlStateNormal];
     } else if (self.app.baseViewController.curViewController == (UIViewController*)self.app.baseViewController.cameraViewController) {
        [self.cameraButton setImage:[UIImage imageNamed:@"btnCameraSel"] forState:UIControlStateNormal];
+    } else if (self.app.baseViewController.curViewController == (UIViewController*)self.app.baseViewController.galleryViewController) {
+        [self.galleryButton setImage:[UIImage imageNamed:@"btnGallerySel"] forState:UIControlStateNormal];
     }
-    // TODO
-    // updateMenus for GalleryViewController.
 }
 
 -(void)homeTabClicked:(id)sender {
@@ -82,6 +82,11 @@
 
 -(void)cameraTabClicked:(id)sender {
     [self.app.baseViewController showCameraView];
+    [self updateMenus];
+}
+
+-(void)galleryTabClicked:(id)sender {
+    [self.app.baseViewController showGalleryView];
     [self updateMenus];
 }
 

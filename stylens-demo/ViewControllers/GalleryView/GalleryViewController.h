@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GalleryViewController : UIViewController
+#import "DataManager.h"
+
+@class AppDelegate;
+
+@interface GalleryViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+
+@property (nonatomic, strong) AppDelegate* app;
+@property (nonatomic, assign) CGRect frame;
+
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) UIImage *previewImage;
+
+-(id)initWithFrame:(CGRect)aFrame;
+-(void)showGallery;
 
 @end

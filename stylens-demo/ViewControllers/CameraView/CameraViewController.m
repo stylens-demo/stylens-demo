@@ -123,12 +123,14 @@ AVCaptureStillImageOutput* stillImageOutput;
             imageData = UIImageJPEGRepresentation(anImage, 1.0);
             
             NSString *filePath = [self documentsPathForFileName:@"bh_stylens_camera_image.jpg"];
+            NSLog(@"%@", filePath);
             [imageData writeToFile:filePath atomically:YES];
             
 #if DEBUG
 //            [self pushViewController:[Global resizeAndAdjustCropImage:[UIImage imageWithData:imageData] ToRect:CGRectMake(0, 0, 1000, 1000)] boxRect:CGRectMake(100, 100, 100, 100)];
 #else
             NSURL *url = [[NSURL alloc] initFileURLWithPath:filePath];
+            NSLog(@"%@", url);
             [self getObjectsWithUserImage:url imageData:imageData];
 //            [self getPlaygroundsObjectsWithUserImage:url imageData:imageData];
 #endif
@@ -163,7 +165,9 @@ AVCaptureStillImageOutput* stillImageOutput;
                                          }
 
 //                                         [session startRunning];
-                                         [self pushViewController:[Global resizeAndAdjustCropImage:[UIImage imageWithData:anImageData] ToRect:CGRectMake(0, 0, 1000, 1000)] boxObjectsDic:boxObjectsDic];
+//                                         [self pushViewController:[Global resizeAndAdjustCropImage:[UIImage imageWithData:anImageData] ToRect:CGRectMake(0, 0, 1000, 1000)] boxObjectsDic:boxObjectsDic];
+                                         
+                                         [self pushViewController:[UIImage imageWithData:anImageData] boxObjectsDic:boxObjectsDic];
                                      }
                                      if (error) {
                                          [self.app.baseViewController stopIndicator];
@@ -352,8 +356,8 @@ AVCaptureStillImageOutput* stillImageOutput;
     
     CGFloat originX = [aBox.left floatValue] * imageRatio;
     CGFloat originY = [aBox.top floatValue] * imageRatio;
-    CGFloat width = ([aBox.right floatValue] - originX) * imageRatio;
-    CGFloat height = ([aBox.bottom floatValue] - originY) * imageRatio;
+    CGFloat width = ([aBox.right floatValue] - [aBox.left floatValue]) * imageRatio;
+    CGFloat height = ([aBox.bottom floatValue] - [aBox.top floatValue]) * imageRatio;
     
     return CGRectMake(originX, originY, width, height);
 }

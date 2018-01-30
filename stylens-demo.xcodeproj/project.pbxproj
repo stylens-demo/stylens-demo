@@ -14,6 +14,7 @@
 		97319A282011976600272560 /* EditorDemoCellHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 97319A272011976600272560 /* EditorDemoCellHeader.m */; };
 		97319A2B2011977500272560 /* EditorDemoCellFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 97319A2A2011977500272560 /* EditorDemoCellFooter.m */; };
 		97319A2E2011979100272560 /* EditorDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 97319A2D2011979100272560 /* EditorDemoCell.m */; };
+		974193F9201DD46D005183B2 /* GalleryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 974193F8201DD46D005183B2 /* GalleryViewController.m */; };
 		979F65D12004C4720066A8B2 /* btnObjectDotNor.png in Resources */ = {isa = PBXBuildFile; fileRef = 979F65CE2004C4720066A8B2 /* btnObjectDotNor.png */; };
 		979F65D22004C4720066A8B2 /* btnObjectDotNor@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979F65CF2004C4720066A8B2 /* btnObjectDotNor@2x.png */; };
 		979F65D32004C4720066A8B2 /* btnObjectDotNor@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 979F65D02004C4720066A8B2 /* btnObjectDotNor@3x.png */; };
@@ -158,6 +159,8 @@
 		97319A2A2011977500272560 /* EditorDemoCellFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditorDemoCellFooter.m; sourceTree = "<group>"; };
 		97319A2C2011979100272560 /* EditorDemoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditorDemoCell.h; sourceTree = "<group>"; };
 		97319A2D2011979100272560 /* EditorDemoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditorDemoCell.m; sourceTree = "<group>"; };
+		974193F7201DD46D005183B2 /* GalleryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GalleryViewController.h; sourceTree = "<group>"; };
+		974193F8201DD46D005183B2 /* GalleryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GalleryViewController.m; sourceTree = "<group>"; };
 		979F65CE2004C4720066A8B2 /* btnObjectDotNor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnObjectDotNor.png; sourceTree = "<group>"; };
 		979F65CF2004C4720066A8B2 /* btnObjectDotNor@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnObjectDotNor@2x.png"; sourceTree = "<group>"; };
 		979F65D02004C4720066A8B2 /* btnObjectDotNor@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btnObjectDotNor@3x.png"; sourceTree = "<group>"; };
@@ -590,6 +593,8 @@
 		97D2AD5B1FF5137900CBE1CD /* GalleryView */ = {
 			isa = PBXGroup;
 			children = (
+				974193F7201DD46D005183B2 /* GalleryViewController.h */,
+				974193F8201DD46D005183B2 /* GalleryViewController.m */,
 			);
 			path = GalleryView;
 			sourceTree = "<group>";
@@ -1151,6 +1156,7 @@
 				97D2AD7B1FF5137900CBE1CD /* EditorCellFooter.m in Sources */,
 				97319A212010935000272560 /* BoxInfo.m in Sources */,
 				97D2AD831FF5137900CBE1CD /* ProductDetailCell.m in Sources */,
+				974193F9201DD46D005183B2 /* GalleryViewController.m in Sources */,
 				97D2ADA61FF513E000CBE1CD /* IndicatorViewController.m in Sources */,
 				97D2AD771FF5137900CBE1CD /* ProductInfo.m in Sources */,
 				97D2ADA31FF513E000CBE1CD /* AloNavi.m in Sources */,

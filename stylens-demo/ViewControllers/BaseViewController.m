@@ -15,6 +15,7 @@
 #import "BHTabbar.h"
 #import "HomeViewController.h"
 #import "CameraViewController.h"
+#import "GalleryViewController.h"
 
 #import "SampleViewController.h"
 
@@ -99,6 +100,22 @@
     //    [self.homeViewController processItemCheckData];
     [self.cameraViewController startCaptureSession];
     self.curViewController = self.cameraViewController;
+}
+
+-(void)showGalleryView {
+//    if (self.curViewController == self.galleryViewController) {
+//        return;
+//    }
+    
+    if (self.galleryViewController == nil) {
+        self.galleryViewController = [[GalleryViewController alloc] initWithFrame:CGRectMake(0, statusBarHeight*self.app.heightRatio, self.view.frame.size.width, self.view.frame.size.height - self.tabbar.frame.size.height - statusBarHeight*self.app.heightRatio)];
+        [self.view addSubview:self.galleryViewController.view];
+    }
+    
+    self.curViewController.view.hidden  = YES;
+    self.galleryViewController.view.hidden = NO;
+    [self.galleryViewController showGallery];
+    self.curViewController = self.galleryViewController;
 }
 
 #pragma mark - Indicator

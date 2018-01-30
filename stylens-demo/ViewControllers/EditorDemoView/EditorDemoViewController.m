@@ -16,6 +16,7 @@
 #import <SwaggerClient/SWGObjectApi.h>
 
 #import "CameraViewController.h"
+#import "GalleryViewController.h"
 #import "ProductDetailViewController.h"
 
 #import "Global.h"
@@ -46,6 +47,10 @@
     
     if (self.cameraViewController) {
         [self.cameraViewController startCaptureSession];
+    }
+    
+    if (self.galleryViewController) {
+        [self.galleryViewController showGallery];
     }
 }
 

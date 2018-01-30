@@ -16,10 +16,12 @@
 
 @class AppDelegate;
 @class CameraViewController;
+@class GalleryViewController;
 
 @interface EditorDemoViewController : AloViewController <UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout>
 
 @property (nonatomic, weak) CameraViewController *cameraViewController;
+@property (nonatomic, weak) GalleryViewController *galleryViewController;
 
 @property (nonatomic, strong, setter=setProductInfo:) ProductInfo *productInfo;
 @property (nonatomic, strong, setter=setProductImage:) UIImage *productImage;
